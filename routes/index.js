@@ -1,9 +1,11 @@
 const express = require("express");
-const userController = require("../controllers/userController");
+const userRoutes = require("./userRoutes");
+const cafeRoutes = require("./cafeRoutes");
+const reserveRoutes = require("./reserveRoutes");
+const tableRoutes = require("./tableRoutes");
 const router = express.Router();
-router.post("/", userController.addUser);
-router.get("/", userController.getAllUsers);
-router.get("/:id", userController.getUserById);
-router.put("/:id", userController.updateUser);
-router.delete("/:id", userController.deleteUser);
+router.use("/users", userRoutes);
+router.use("/cafes", cafeRoutes);
+router.use("/reserves", reserveRoutes);
+router.use("/tables", tableRoutes);
 module.exports = router;

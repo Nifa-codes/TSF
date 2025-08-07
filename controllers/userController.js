@@ -13,8 +13,8 @@ const updateUser = async function (req, res) {
   try {
     const id = req.params.id;
     const { name, email, number } = req.body;
-    const userData = { name, email, number };
-    const result = await userService.updateUser(id, userData);
+    const userData = { id, name, email, number };
+    const result = await userService.updateUser(userData);
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({ error: error.message });

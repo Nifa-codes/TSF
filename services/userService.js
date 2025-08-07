@@ -1,12 +1,11 @@
-const { result } = require("../db");
 const db = require("../db");
 const addUser = async function (userData) {
   const { name, email, number } = userData;
   const result = await db.func("add_user", [name, email, number]);
   return result;
 };
-const updateUser = async function (id, userData) {
-  const { name, email, number } = userData;
+const updateUser = async function (userData) {
+  const { id, name, email, number } = userData;
   const result = await db.func("update_user", [id, name, email, number]);
   return result;
 };
