@@ -3,7 +3,7 @@ const addCafe = async function (req, res) {
   try {
     const { name, description, location, phone } = req.body;
     const cafeData = { name, description, location, phone };
-    const result = await cafeService.add_cafe(cafeData);
+    const result = await cafeService.addCafe(cafeData);
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({ error: error.message });

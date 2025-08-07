@@ -1,0 +1,4 @@
+CREATE OR REPLACE FUNCTION get_cafe(_id INT)
+RETURNS cafes AS $$
+    SELECT * FROM cafes WHERE id=_id;
+$$LANGUAGE SQL;

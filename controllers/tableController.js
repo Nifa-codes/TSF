@@ -12,7 +12,7 @@ const addTable = async function (req, res) {
 //for cafe
 const getTables = async function (req, res) {
   try {
-    const cafeId = req.params.id;
+    const cafeId = req.params.cafeId;
     const result = await tableService.getTables(cafeId);
     return res.status(200).json(result);
   } catch (error) {

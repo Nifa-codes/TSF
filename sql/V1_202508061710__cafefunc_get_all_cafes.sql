@@ -1,0 +1,4 @@
+CREATE OR REPLACE FUNCTION get_all_cafes() 
+RETURNS SETOF cafes AS $$
+    SELECT * FROM cafes;
+$$ LANGUAGE SQL;
