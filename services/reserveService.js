@@ -36,6 +36,22 @@ const getReservationById = async function (id) {
   const result = await db.func("get_reserve", [id]);
   return result;
 };
+const listReservation = async function (page, limit) {
+  const result = await db.func("list_reserves", [page, limit]);
+  return result;
+};
+const addReservationCTE = async function (reservationData) {
+  const { cafe_id, status, date, user_id, table_id } = reservationData;
+  const result = await db.func("add_reserve_cte", [
+    cafe_id,
+    //'pending', 'preparing', 'done', 'canceled'
+    status,
+    date,
+    user_id,
+    table_id,
+  ]);
+  return result;
+};
 module.exports = {
   addReservation,
   updateReservation,

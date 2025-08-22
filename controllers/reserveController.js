@@ -46,10 +46,43 @@ const getAllReservations = async function (req, res) {
     return res.status(500).json({ error: error.message });
   }
 };
+const listReservation = async function (req, res) {
+  try {
+    let page = parseInt(req.query.page);
+    let limit = parseInt(req.query.limit);
+    if (!page || !limit) {
+      page = 1;
+      limit = 10;
+    }
+    const result = await reserveService.listReservation(page, limit);
+    const total_counts = result.rows[0].total_count;
+    return res.status(200).json({
+      page: page,
+      limit: limit,
+      total_count: total_counts,
+      reservations: result,
+    });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+const addReservationCTE = async function (req, res) {
+  try {
+    const { user_id, cafe_id, table_id, date, status } = req.body;
+    const reservationData = { user_id, cafe_id, table_id, date, status };
+    const result = await reserveService.addReservationCTE(reservationData);
+    return res.status(200).json(result);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   addReservation,
   updateReservation,
   deleteReservation,
   getReservationById,
   getAllReservations,
+  listReservation,
+  addReservationCTE,
 };
